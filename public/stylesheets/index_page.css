@@ -11,3 +11,7 @@
 .carousel-inner>.item>a>img, .carousel-inner>.item>img{
 	width: 100%;
 }
+
+.panel-body img{
+	width: 100%;
+}
