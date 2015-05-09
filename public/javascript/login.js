@@ -58,9 +58,9 @@ function callback(err) {
 }
 
 function saveSession(user,id) {
-  sessionStorage.setItem('name', user.name);
+  sessionStorage.setItem('username', user.name);
   sessionStorage.setItem('picture', user.picture);
-  sessionStorage.setItem('id', id);    
+  sessionStorage.setItem('user_id', id);    
 }
 
 function checkSession() {
@@ -72,8 +72,8 @@ function checkSession() {
 }
 
 function logOut() {
-	sessionStorage.setItem('name', '');
+	sessionStorage.setItem('username', '');
 	sessionStorage.setItem('picture', '');
-	sessionStorage.setItem('id', '');
+	sessionStorage.setItem('user_id', '');
   window.location.reload();
 }

@@ -3,20 +3,30 @@ $(document).ready(function() {
   	e.preventDefault();
   	createBattle();
   });
-
+  $('.add-ziggeo').click(function() {});
 });
 
 function createBattle(name) {
-	var name = $('.add-battle .name').val();
+	var name = $('.add-battle .name').val(),
+	    id;
 	// check if exists
 	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
-  	if () {  
-
+  	console.log(snap.val())
+  	if (snap.exists()) { 
+  	  // for (key in battle.val()) {
+  	  // 	sessionStorage.setItem('battle', battle.val()[key]);
+  	  // } 
+     //  console.log(battle.val()[key])
   	} else {
-  		database.child('battles').push({ name: name }, callback);
+  	  database.child('battles').push({ name: name }, callback);
   	}
 	});
 
   sessionStorage.setItem('battle', name);
-  window.location = window.location.href+'/battle_page.html'
+  window.location = 'http://'+window.location.host+'/battle_page.html';
+}
+
+function generateZiggeoVideo(token_number) {
+	var video = $("<ziggeo>").attr('ziggeo-video',token_number).
+	            attr('ziggeo-width', 320).attr('ziggeo-height', 240);
 }
