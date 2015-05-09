@@ -37,13 +37,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Battles <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="portfolio-1-col.html">Winners</a>
+                                <a href="#">Winners</a>
                             </li>
                             <li>
-                                <a href="portfolio-2-col.html">Create Battle</a>
+                                <a href="#" data-toggle="modal" data-target="#myModal">Create Battle</a>
                             </li>
                             <li>
-                                <a href="portfolio-3-col.html">View Battles</a>
+                                <a href="#">View Battles</a>
                             </li>
                         </ul>
                     </li>
@@ -135,24 +135,24 @@
                 </div>
             </div>
         </div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">BATTLE VIDEOS</h4>
-      </div>
-      <div class="modal-body">
-        LOGIN WITH TWITTER
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body text-center">
+                <form>
+                    <h3>Battle Name</h3>
+                    <input type="text">
+                    <br><br>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
