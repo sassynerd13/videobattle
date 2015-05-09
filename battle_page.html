@@ -7,6 +7,8 @@
     <meta name="title" content="Video Battle">
     <link rel="stylesheet" type="text/css" href="public/stylesheets/index_page.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://assets.ziggeo.com/css/ziggeo-betajs-player.min.css">
 </head>
 
 <body>
@@ -169,7 +171,7 @@
                         <h3>UPLOAD A VIDEO</h3>
                         <button class="btn btn-lg btn-primary">Youtube</button>
                         <p>or</p>
-                        <button class="btn btn-lg btn-primary">Ziggeo</button>
+                        <button class="btn btn-lg btn-primary ziggeo-upload">Ziggeo</button>
                     </div>
                 </div>
             </div>
@@ -178,9 +180,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--Ziggeo assets don't duplicate jQuery. To include jQuery change to 'ziggeo-jquery-json2'... etc.-->
+    <script src="https://assets.ziggeo.com/js/ziggeo-json2-betajs-player.min.js"></script>
+    <script>ZiggeoApi.token = "440f5398b65761d6327beaa38dbe7fa0";</script>
     <script src='public/javascript/app.js'></script>
     <script src='public/javascript/index_page.js'></script>
-     <script src='public/javascript/battle_page.js'></script>
+    <script src='public/javascript/battle_page.js'></script>
+    <script src='public/javascript/ziggeo.js'></script>
 </body>
 
 </html>
