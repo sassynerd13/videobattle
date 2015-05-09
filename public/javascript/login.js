@@ -1,10 +1,7 @@
 $(document).ready(function() {
   checkSession();
-	$('.login-twitter').click(function() {
-	  signInWithTwitter(); 
-	  
-	});
-
+	$('.login-twitter').click(signInWithTwitter);
+	$('.logout').click(logOut);
 });
 
 
@@ -24,7 +21,8 @@ function saveOrRetrieveUser(data) {
 	var uid = data.uid, // twitter:uid
 	    token = data.token; 
   // see if user already exists
-  users.child(uid).on('value', function(snap) {
+  var currentUser = new Firebase(firebase_url+'/users/'+uid);
+  currentUser.on('value', function(snap) {
     console.log(snap.key())
   });
   saveUser(data);
@@ -60,6 +58,8 @@ function saveSession(user,id) { console.log(user,id)
 function checkSession() {
 	if (sessionStorage.name.length === 0) {
 		$('.login-twitter').removeClass('hidden');
+	} else {
+		$('.logout').removeClass('hidden');
 	}
 }
 
