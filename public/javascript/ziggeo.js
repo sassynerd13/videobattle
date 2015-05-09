@@ -1,3 +1,4 @@
+var ziggeo;
 $(document).ready(function() {
   $('.ziggeo-upload').on("click", function() {
     //replace modal contents to Ziggeo recorder
@@ -5,6 +6,7 @@ $(document).ready(function() {
         "<ziggeo ziggeo-width=320 ziggeo-height=240></ziggeo>")
   });
   ZiggeoApi.Events.on("submitted", function (data) {
+      ziggeo = data;
       // initialize new ziggeo player
           //<ziggeo ziggeo-video=""
             // ziggeo-width=320
@@ -15,3 +17,4 @@ $(document).ready(function() {
       // replace .addvideo button (by target) w/ the ziggeo player created
     });
 });
+

@@ -3,7 +3,10 @@ $(document).ready(function() {
   	e.preventDefault();
   	createBattle();
   });
-  $('.add-ziggeo').click(function() {});
+
+  $('.add-video').on('click', function(e){
+    console.log(e.target);
+  });
 });
 
 function createBattle(name) {
@@ -13,20 +16,35 @@ function createBattle(name) {
 	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
   	console.log(snap.val())
   	if (snap.exists()) { 
-  	  // for (key in battle.val()) {
-  	  // 	sessionStorage.setItem('battle', battle.val()[key]);
-  	  // } 
-     //  console.log(battle.val()[key])
+  	  for (key in battle.val()) {
+  	  	sessionStorage.setItem('battle', battle.val()[key]);
+  	  } 
+      console.log(snap.val()[key])
+      sessionStorage.setItem('battle_id', snap.val()[key]);
   	} else {
   	  database.child('battles').push({ name: name }, callback);
   	}
 	});
 
-  sessionStorage.setItem('battle', name);
+  
   window.location = 'http://'+window.location.host+'/battle_page.html';
 }
 
-function generateZiggeoVideo(token_number) {
-	var video = $("<ziggeo>").attr('ziggeo-video',token_number).
-	            attr('ziggeo-width', 320).attr('ziggeo-height', 240);
+function addVideo(service,id,thumbnail) {
+	console.log(service,id,thumbnail);
+  var battleId;
+  battles.orderByChild('name').equalTo(name).on('value', function(snap) {
+  	
+  	if (snap.exists()) { 
+  	  for (key in battle.val()) {
+  	  	console.log(battle.val()[key])	
+        battleId = battle.val()[key]
+  	  } 
+    }
+  });
+    
+  var battle = new Firebase(firebase_url+'/battles/'+battleId);
+  battle.child('videos').child(id).set({ 
+  	service: service, thumbnail: thumbnail 
+  }, callback);
 }

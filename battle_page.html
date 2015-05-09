@@ -168,10 +168,23 @@
                         <h4 class="modal-title" id="myModalLabel">BATTLE VIDEOS</h4>
                     </div>
                     <div class="modal-body text-center">
+                    <div class="begin">
                         <h3>UPLOAD A VIDEO</h3>
                         <button class="btn btn-lg btn-primary add-youtube">Youtube</button>
                         <p>or</p>
                         <button class="btn btn-lg btn-primary ziggeo-upload">Ziggeo</button>
+                    </div>    
+                    <div class="search-youtube hidden">
+                    <form class='search-youtube'>
+                      <label>
+                        <input id="query" value='cats' type="search"/>
+                        <button class="search-button" disabled="disabled">Search</button>
+                      </label>
+                    </form>
+                       <div id="result-loading">Loading...</div>
+                       <div id="videos-result"></div>
+                    </div>
+    
                     </div>
                 </div>
             </div>
@@ -185,11 +198,15 @@
     <script src="https://assets.ziggeo.com/js/ziggeo-json2-betajs-player.min.js"></script>
     <script>ZiggeoApi.token = "440f5398b65761d6327beaa38dbe7fa0";</script>
     <script src='public/javascript/app.js'></script>
+    <script src='public/javascript/login.js'></script>
     <script src='public/javascript/index_page.js'></script>
     <script src='public/javascript/battle_page.js'></script>
     <script src='public/javascript/ziggeo.js'></script>
+    <script src='public/javascript/youtube.js'></script>
     <script src='public/javascript/add_video_search.js'></script>
+    <script src='public/javascript/battles.js'></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+
     <script type="text/javascript">
       $('.battle-name').html(sessionStorage.battle.toUpperCase());
     </script>
