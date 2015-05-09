@@ -64,7 +64,7 @@ function saveSession(user,id) {
 }
 
 function checkSession() {
-	if (sessionStorage.name.length === 0) {
+	if (sessionStorage.name === undefined || sessionStorage.name.length === 0) {
 		$('.login-twitter').removeClass('hidden');
 	} else {
 		$('.logout').removeClass('hidden');
