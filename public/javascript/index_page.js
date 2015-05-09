@@ -6,7 +6,7 @@ $(document).ready(function() {
 database.on('value', function(snap){
   var data = snap.val()
   // data.battles
-  debugger
+
 
   var currentBattles = $('.carousel-inner').children();
   i = 0
