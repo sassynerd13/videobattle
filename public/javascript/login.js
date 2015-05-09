@@ -11,7 +11,7 @@ function signInWithTwitter() {
     if (error) {
       console.log("Login Failed!", error);
     } else {
-      console.log("Authenticated successfully with payload:", authData);
+      console.log("Authenticated successfully", authData);
       saveOrRetrieveUser(authData);
     }
   });	
@@ -23,9 +23,17 @@ function saveOrRetrieveUser(data) {
   // see if user already exists
   var currentUser = new Firebase(firebase_url+'/users/'+uid);
   currentUser.on('value', function(snap) {
-    console.log(snap.key())
-  });
-  saveUser(data);
+    console.log(snap.val())
+    if (snap.exists()) {
+      window.alert('Welcome back ' + snap.val().name);
+      $('.login-twitter').addClass('hidden');
+      $('.logout').removeClass('hidden');
+      var profile = data.twitter.cachedUserProfile;
+      saveSession({name: profile.name, picture: profile.profile_image_url},uid);
+    } else {
+      saveUser(data);
+    }
+  });  
 }
 
 function saveUser(data) { 
@@ -33,7 +41,7 @@ function saveUser(data) {
   var profile = data.twitter.cachedUserProfile,
   		id = data.uid,
       name = profile.name,
-      //location = profile.location,
+      location = profile.location,
       handle = profile.screen_name,
       picture = profile.profile_image_url;
   var user = { name: name, handle: handle, picture: picture };
@@ -49,7 +57,7 @@ function callback(err) {
   }	
 }
 
-function saveSession(user,id) { console.log(user,id)
+function saveSession(user,id) {
   sessionStorage.setItem('name', user.name);
   sessionStorage.setItem('picture', user.picture);
   sessionStorage.setItem('id', id);    
@@ -67,4 +75,5 @@ function logOut() {
 	sessionStorage.setItem('name', '');
 	sessionStorage.setItem('picture', '');
 	sessionStorage.setItem('id', '');
+  window.location.reload();
 }
