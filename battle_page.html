@@ -12,6 +12,15 @@
 </head>
 
 <body>
+    <h1 class="text-center">
+        VIDEO BATTLES
+    </h1>
+    <div class="col-lg-12">
+        <h1 class="text-center battle-name">
+
+        </h1>
+    </div>
+
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -169,7 +178,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <h3>UPLOAD A VIDEO</h3>
-                        <button class="btn btn-lg btn-primary">Youtube</button>
+                        <button class="btn btn-lg btn-primary add-youtube">Youtube</button>
                         <p>or</p>
                         <button class="btn btn-lg btn-primary ziggeo-upload">Ziggeo</button>
                     </div>
@@ -187,6 +196,9 @@
     <script src='public/javascript/index_page.js'></script>
     <script src='public/javascript/battle_page.js'></script>
     <script src='public/javascript/ziggeo.js'></script>
+    <script type="text/javascript">
+      $('.battle-name').html(sessionStorage.battle);
+    </script>
 </body>
 
 </html>
