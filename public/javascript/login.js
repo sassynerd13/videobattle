@@ -22,13 +22,12 @@ function signInWithTwitter() {
 
 function saveOrRetrieveUser(data) {
 	var uid = data.uid, // twitter:uid
-	    token = data.token;
+	    token = data.token; 
   // see if user already exists
-  database.orderByChild('id').equalTo(uid).once('value', function(snapshot) {
-  	console.log('welcome back', snapshot);
-  	//if (snapshot.key() === null) { saveUser(data); }
+  users.child(uid).on('value', function(snap) {
+    console.log(snap.key())
   });
-  
+  saveUser(data);
 }
 
 function saveUser(data) { 
@@ -52,14 +51,20 @@ function callback(err) {
   }	
 }
 
-function saveSession(user,id) {
-  document.cookie = "name="+user.handle+';picture='+user.picture
-  +'; id='+id;
+function saveSession(user,id) { console.log(user,id)
+  sessionStorage.setItem('name', user.name);
+  sessionStorage.setItem('picture', user.picture);
+  sessionStorage.setItem('id', id);    
 }
 
 function checkSession() {
-	var session = document.cookie;
-	if (session.indexOf('picture=') - session.indexOf('name=') > 1) {
+	if (sessionStorage.name.length === 0) {
 		$('.login-twitter').removeClass('hidden');
 	}
+}
+
+function logOut() {
+	sessionStorage.setItem('name', '');
+	sessionStorage.setItem('picture', '');
+	sessionStorage.setItem('id', '');
 }
