@@ -1,9 +1,8 @@
 $(document).ready(function() {
-  $('.record-button').on("click", function() {
+  $('.ziggeo-upload').on("click", function() {
     //replace modal contents to Ziggeo recorder
-    //<ziggeo ziggeo-width=320
-              //ziggeo-height=240>
-                //</ziggeo>
+      $('.modal-body').replaceWith(
+        "<ziggeo ziggeo-width=320 ziggeo-height=240></ziggeo>")
   });
   ZiggeoApi.Events.on("submitted", function (data) {
       // initialize new ziggeo player
