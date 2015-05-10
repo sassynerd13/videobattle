@@ -14,37 +14,57 @@ $(document).ready(function() {
   });
 });
 
+var battle;
+
 function createBattle(name) {
-  var name = $('.add-battle .name').val(),
-      id;
-  // check if exists
-  battles.orderByChild('name').equalTo(name).on('value', function(snap) {
-    console.log(snap.val())
-    if (snap.exists()) {
-      for (key in battle.val()) {
-        sessionStorage.setItem('battle', battle.val()[key]);
-      }
-      console.log(snap.val()[key])
-      sessionStorage.setItem('battle_id', snap.val()[key]);
-    } else {
-      database.child('battles').push({ name: name }, callback);
-    }
-  });
+	var name = $('.add-battle .name').val(),
+	    id;
 
+	// check if exists
+	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
+  	battle = snap; console.log(snap)
+  	if (snap.exists()) {
+  	  for (key in snap.val()) {
+  	  	id = key;
+  	  }
+  	} else {
+  	  database.child('battles').push({ name: name }, callback);
+  	}
+	});
 
+  sessionStorage.setItem('battle', name);
   window.location = 'http://'+window.location.host+'/battle_page.html';
 }
 
 function addVideo(service,id,thumbnail) {
-  console.log(service,id,thumbnail);
-  var battleId;
-  battles.orderByChild('name').equalTo(name).on('value', function(snap) {
+	console.log(service,id,thumbnail);
+  var battle_name = sessionStorage.battle;
 
-    if (snap.exists()) {
-      for (key in battle.val()) {
-        console.log(battle.val()[key])
-        battleId = battle.val()[key]
-      }
+	battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
+		thisbattle = snap;
+    for (key in snap.val()) {
+		  var battle = new Firebase(firebase_url+'/battles/'+key);
+		  battle.child('videos').child(id).set({
+		  	service: service, thumbnail: thumbnail
+		  }, callback);
+    }
+	});    
+}
+
+var thissnap;
+function showBattles() {
+  battles.orderByChild('name').limitToLast(3).on('value', function(snap) {
+    console.log(snap)
+    thissnap = snap;
+    for (battle in snap.val()) {
+      var img;
+      for (video in battle.videos) {
+        img = $('<img>').attr(src, video.thumbnail)
+      } console.log(img)
+      var item = $('<div>').addClass('item');
+      var name = $('<h1>').addClass('name').html(battle.name);
+      item.append(img).append(name); console.log(item)
+      $('.carousel-inner').append(item);
     }
 
     var replacement;
@@ -65,9 +85,7 @@ function addVideo(service,id,thumbnail) {
     $('.begin').show()
 
   });
+}
 
-  var battle = new Firebase(firebase_url+'/battles/'+battleId);
-  battle.child('videos').child(id).set({
-    service: service, thumbnail: thumbnail
-  }, callback);
+
 }

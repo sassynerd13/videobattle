@@ -7,7 +7,7 @@ $(document).ready(function() {
   });
 
   ZiggeoApi.Events.on("submitted", function(data) {
-    addVideo('ziggeo', data.video.token, 'img.gif' );
+    addVideo('ziggeo', data.video.token, data.image );
     $('.zig2').remove();
   });
 });
