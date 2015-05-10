@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('.add-battle').submit(function(e) {
-  	e.preventDefault();
-  	createBattle();
+    e.preventDefault();
+    createBattle();
   });
 
   $('.add-video').on('click', function(e){
@@ -12,6 +12,7 @@ $(document).ready(function() {
 var battle;
 
 function createBattle(name) {
+<<<<<<< HEAD
 	var name = $('.add-battle .name').val(),
 	    id;
 
