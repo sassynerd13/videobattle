@@ -9,42 +9,40 @@ $(document).ready(function() {
   });
 });
 
+var battle;
+
 function createBattle(name) {
 	var name = $('.add-battle .name').val(),
 	    id;
+
 	// check if exists
 	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
-  	console.log(snap.val())
+  	battle = snap; console.log(snap)
   	if (snap.exists()) { 
-  	  for (key in battle.val()) {
-  	  	sessionStorage.setItem('battle', battle.val()[key]);
+  	  for (key in snap.val()) {
+  	  	id = key;
   	  } 
-      console.log(snap.val()[key])
-      sessionStorage.setItem('battle_id', snap.val()[key]);
   	} else {
   	  database.child('battles').push({ name: name }, callback);
   	}
 	});
 
-  
+  sessionStorage.setItem('battle', name);
   window.location = 'http://'+window.location.host+'/battle_page.html';
 }
 
 function addVideo(service,id,thumbnail) {
 	console.log(service,id,thumbnail);
-  var battleId;
-  battles.orderByChild('name').equalTo(name).on('value', function(snap) {
-  	
-  	if (snap.exists()) { 
-  	  for (key in battle.val()) {
-  	  	console.log(battle.val()[key])	
-        battleId = battle.val()[key]
-  	  } 
+  var battle_name = sessionStorage.battle;
+
+	battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
+		thisbattle = snap;
+    for (key in snap.val()) {
+		  var battle = new Firebase(firebase_url+'/battles/'+key);
+		  battle.child('videos').child(id).set({ 
+		  	service: service, thumbnail: thumbnail 
+		  }, callback);    	
     }
-  });
-    
-  var battle = new Firebase(firebase_url+'/battles/'+battleId);
-  battle.child('videos').child(id).set({ 
-  	service: service, thumbnail: thumbnail 
-  }, callback);
+	});    
+
 }
