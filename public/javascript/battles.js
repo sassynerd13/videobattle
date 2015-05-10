@@ -12,7 +12,6 @@ $(document).ready(function() {
 var battle;
 
 function createBattle(name) {
-<<<<<<< HEAD
 	var name = $('.add-battle .name').val(),
 	    id;
 
@@ -45,5 +44,35 @@ function addVideo(service,id,thumbnail) {
 		  }, callback);    	
     }
 	});    
+}
 
+var thissnap;
+function showBattles() {
+  battles.orderByChild('name').limitToLast(3).on('value', function(snap) {
+    console.log(snap)
+    thissnap = snap;
+    for (battle in snap.val()) {
+      var img;
+      for (video in battle.videos) {
+        img = $('<img>').attr(src, video.thumbnail)
+      } console.log(img)
+      var item = $('<div>').addClass('item');
+      var name = $('<h1>').addClass('name').html(battle.name);
+      item.append(img).append(name); console.log(item)
+      $('.carousel-inner').append(item);
+    }
+  });
+}
+
+
+function getVideos() {
+  var battle_name = sessionStorage.battle;
+
+  battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
+    
+      var battle = new Firebase(firebase_url+'/battles/'+key);
+      battle.child('videos').child(id).set({ 
+        service: service, thumbnail: thumbnail 
+      }, callback);     
+  }); 
 }
