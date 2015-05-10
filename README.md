@@ -9,8 +9,9 @@ The brackets you see in sports. We wanted to encourage engagement through 'gamif
 ##What Can I Do with Video Battle?
 
 * Create video battles
-* Video submission through Ziggeo or Youtube
-* Watch videos w/ Embed.ly and Ziggeo
+* Video submission through Ziggeo or Youtube Search API
+* Watch videos w/ Embed.ly, the YouTube Data API and Ziggeo's player
+* See the battles happening now (in real time) using Firebase
 
 ###Yet To Come
 
@@ -20,6 +21,13 @@ The brackets you see in sports. We wanted to encourage engagement through 'gamif
 * Multiple battle types
   * Open Submission: Submit videos into battle slots, then vote
   * Closed Submission: Right to the voting! Videos selected by the Battle Creator
+
+##APIs Used
+
+* YouTube Search API
+* YouTube Data API
+* Ziggeo API
+* Firebase API
 
 ##Team Fun Facts
 
