@@ -14,7 +14,7 @@ $(document).ready(function() {
   ZiggeoApi.Events.on("submitted", function(data) {
     $(that).replaceWith('<ziggeo ziggeo-video="' + data.video.token + '" ziggeo-width=320 ziggeo-height=240></ziggeo>');
     $('.modal').removeClass('in').addClass('out');
-    $('.begin').show()
+    $('.begin').show();
     $('.zig2').remove();
   });
 });
