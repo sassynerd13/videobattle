@@ -1,6 +1,6 @@
 #Video Battle
 
-![](public/imgs/newlogo.jpg)
+![](public/imgs/newlogo.png)
 
 Bringing the brackets craze to video! Video Battle is a fun way to use new or existing video to battle your friends and fellow webizens.
 
