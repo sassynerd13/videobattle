@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  $('.add-video').on('click', function() {
+    that = this.parentNode;
+    console.log(that)
+  });
+
   $('.add-battle').submit(function(e) {
     e.preventDefault();
     createBattle();
@@ -41,6 +46,24 @@ function addVideo(service,id,thumbnail) {
         battleId = battle.val()[key]
       }
     }
+
+    var replacement;
+    if ( service == 'youtube' ) {
+      var url = 'http://youtu.be/' + id;
+      replacement = "<a href='" + url + "'>" + url + "</a>";
+    } else if ( service == 'ziggeo' ) {
+      replacement = '<ziggeo ziggeo-video="' + id + '" ziggeo-width=320 ziggeo-height=240></ziggeo>';
+    }
+
+    $(that).html( replacement );
+    if ( service == 'youtube' ) embedly_replace_links(that);
+
+    $('.modal-body .begin').removeClass('hidden');
+    $('.search-youtube').addClass('hidden');
+
+    $('.modal').removeClass('in').addClass('out');
+    $('.begin').show()
+
   });
 
   var battle = new Firebase(firebase_url+'/battles/'+battleId);

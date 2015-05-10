@@ -1,10 +1,5 @@
 var ziggeo;
 $(document).ready(function() {
-  $('.add-video').on('click', function() {
-    that = this;
-    console.log(that)
-  });
-
   $('.ziggeo-upload').on("click", function() {
     $('.begin').hide()
     $('.zig').append(
@@ -12,9 +7,7 @@ $(document).ready(function() {
   });
 
   ZiggeoApi.Events.on("submitted", function(data) {
-    $(that).replaceWith('<ziggeo ziggeo-video="' + data.video.token + '" ziggeo-width=320 ziggeo-height=240></ziggeo>');
-    $('.modal').removeClass('in').addClass('out');
-    $('.begin').show()
+    addVideo('ziggeo', data.video.token, 'img.gif' );
     $('.zig2').remove();
   });
 });
