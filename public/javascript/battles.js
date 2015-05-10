@@ -7,9 +7,10 @@ $(document).ready(function() {
   $('.add-video').on('click', function(e){
     console.log(e.target);
   });
+
 });
 
-var battle;
+
 
 function createBattle(name) {
 	var name = $('.add-battle .name').val(),
@@ -17,7 +18,7 @@ function createBattle(name) {
 
 	// check if exists
 	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
-  	battle = snap; console.log(snap)
+  	console.log(snap)
   	if (snap.exists()) {
   	  for (key in snap.val()) {
   	  	id = key;
@@ -46,33 +47,30 @@ function addVideo(service,id,thumbnail) {
 	});    
 }
 
+var thisbattle;
 var thissnap;
 function showBattles() {
   battles.orderByChild('name').limitToLast(3).on('value', function(snap) {
     console.log(snap)
     thissnap = snap;
-    for (battle in snap.val()) {
+    for (key in snap.val()) { 
+      var battle = snap.val()[key];
+      thisbattle = battle;
       var img;
-      for (video in battle.videos) {
-        img = $('<img>').attr(src, video.thumbnail)
-      } console.log(img)
+      for (key in battle.videos) {
+        var video = battle.videos[key];
+        console.log(video)
+        img = $('<img>').attr('src', video.thumbnail)
+      } 
       var item = $('<div>').addClass('item');
       var name = $('<h1>').addClass('name').html(battle.name);
       item.append(img).append(name); console.log(item)
       $('.carousel-inner').append(item);
+
+      $('.item img').click(function(e) {
+        var name = $(e.target).parent().find('.name').html();
+        createBattle(name);
+      });
     }
   });
-}
-
-
-function getVideos() {
-  var battle_name = sessionStorage.battle;
-
-  battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
-    
-      var battle = new Firebase(firebase_url+'/battles/'+key);
-      battle.child('videos').child(id).set({ 
-        service: service, thumbnail: thumbnail 
-      }, callback);     
-  }); 
 }
