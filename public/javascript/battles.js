@@ -1,15 +1,11 @@
 $(document).ready(function() {
-  $('.add-video').on('click', function() {
-    that = this.parentNode;
-    console.log(that)
-  });
-
   $('.add-battle').submit(function(e) {
     e.preventDefault();
     createBattle();
   });
 
   $('.add-video').on('click', function(e){
+    that = this.parentNode;
     console.log(e.target);
   });
 });
@@ -40,6 +36,26 @@ function addVideo(service,id,thumbnail) {
 	console.log(service,id,thumbnail);
   var battle_name = sessionStorage.battle;
 
+
+  var replacement;
+  if ( service == 'youtube' ) {
+    var url = 'http://youtu.be/' + id;
+    replacement = "<a href='" + url + "'>" + url + "</a>";
+  } else if ( service == 'ziggeo' ) {
+    replacement = '<ziggeo ziggeo-video="' + id + '" ziggeo-width=320 ziggeo-height=240></ziggeo>';
+  }
+
+  $(that).html( replacement );
+  if ( service == 'youtube' ) embedly_replace_links(that);
+
+  $('.modal-body .begin').removeClass('hidden');
+  $('.search-youtube').addClass('hidden');
+
+  $('.modal').removeClass('in').addClass('out');
+  $('.begin').show()
+
+
+
 	battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
 		thisbattle = snap;
     for (key in snap.val()) {
@@ -66,26 +82,18 @@ function showBattles() {
       item.append(img).append(name); console.log(item)
       $('.carousel-inner').append(item);
     }
-
-    var replacement;
-    if ( service == 'youtube' ) {
-      var url = 'http://youtu.be/' + id;
-      replacement = "<a href='" + url + "'>" + url + "</a>";
-    } else if ( service == 'ziggeo' ) {
-      replacement = '<ziggeo ziggeo-video="' + id + '" ziggeo-width=320 ziggeo-height=240></ziggeo>';
-    }
-
-    $(that).html( replacement );
-    if ( service == 'youtube' ) embedly_replace_links(that);
-
-    $('.modal-body .begin').removeClass('hidden');
-    $('.search-youtube').addClass('hidden');
-
-    $('.modal').removeClass('in').addClass('out');
-    $('.begin').show()
-
   });
 }
 
 
+function getVideos() {
+  var battle_name = sessionStorage.battle;
+
+  battles.orderByChild('name').equalTo(battle_name).on('value', function(snap) {
+    
+      var battle = new Firebase(firebase_url+'/battles/'+key);
+      battle.child('videos').child(id).set({ 
+        service: service, thumbnail: thumbnail 
+      }, callback);     
+  }); 
 }
