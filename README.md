@@ -31,9 +31,9 @@ The brackets you see in sports. We wanted to encourage engagement through 'gamif
 
 ##Planning
 
-![](public/imgs/mockups_1.jpg)
-
 ![](public/imgs/mockups_2.jpg)
+
+![](public/imgs/mockups_1.jpg)
 
 ##Team Fun Facts
 
