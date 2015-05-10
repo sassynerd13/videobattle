@@ -18,10 +18,10 @@ function createBattle(name) {
 	// check if exists
 	battles.orderByChild('name').equalTo(name).on('value', function(snap) {
   	battle = snap; console.log(snap)
-  	if (snap.exists()) { 
+  	if (snap.exists()) {
   	  for (key in snap.val()) {
   	  	id = key;
-  	  } 
+  	  }
   	} else {
   	  database.child('battles').push({ name: name }, callback);
   	}
@@ -39,9 +39,9 @@ function addVideo(service,id,thumbnail) {
 		thisbattle = snap;
     for (key in snap.val()) {
 		  var battle = new Firebase(firebase_url+'/battles/'+key);
-		  battle.child('videos').child(id).set({ 
-		  	service: service, thumbnail: thumbnail 
-		  }, callback);    	
+		  battle.child('videos').child(id).set({
+		  	service: service, thumbnail: thumbnail
+		  }, callback);
     }
 	});    
 }
