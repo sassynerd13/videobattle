@@ -1,5 +1,6 @@
     // Comment
     function search_videos() {
+      $('#videos-result').html('');
       search_youtube(); 
       // search_vimeo();
       // search_vine();
