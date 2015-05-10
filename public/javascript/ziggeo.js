@@ -1,20 +1,20 @@
 var ziggeo;
 $(document).ready(function() {
-  $('.ziggeo-upload').on("click", function() {
-    //replace modal contents to Ziggeo recorder
-      $('.modal-body').replaceWith(
-        "<ziggeo ziggeo-width=320 ziggeo-height=240></ziggeo>")
+  $('.add-video').on('click', function() {
+    that = this;
+    console.log(that)
   });
-  ZiggeoApi.Events.on("submitted", function (data) {
-      ziggeo = data;
-      // initialize new ziggeo player
-          //<ziggeo ziggeo-video=""
-            // ziggeo-width=320
-            // ziggeo-height=240>
-          //</ziggeo>
-      // set ziggeo-video=data.video.token
-      //close submission modal object
-      // replace .addvideo button (by target) w/ the ziggeo player created
-    });
-});
 
+  $('.ziggeo-upload').on("click", function() {
+    $('.begin').hide()
+    $('.zig').append(
+      "<div class='zig2'><ziggeo ziggeo-width=320 ziggeo-height=240></ziggeo></div>")
+  });
+
+  ZiggeoApi.Events.on("submitted", function(data) {
+    $(that).replaceWith('<ziggeo ziggeo-video="' + data.video.token + '" ziggeo-width=320 ziggeo-height=240></ziggeo>');
+    $('.modal').removeClass('in').addClass('out');
+    $('.begin').show()
+    $('.zig2').remove();
+  });
+});
