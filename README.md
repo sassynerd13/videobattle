@@ -29,6 +29,12 @@ The brackets you see in sports. We wanted to encourage engagement through 'gamif
 * Ziggeo API
 * Firebase API
 
+##Planning
+
+![](public/imgs/mockups_2.jpg)
+
+![](public/imgs/mockups_1.jpg)
+
 ##Team Fun Facts
 
 * We're a bunch of co-workers from Waywire!
