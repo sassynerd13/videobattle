@@ -1,5 +1,7 @@
 #Video Battle
 
+![](public/imgs/newlogo.jpg)
+
 Bringing the brackets craze to video! Video Battle is a fun way to use new or existing video to battle your friends and fellow webizens.
 
 ##Inspiration
@@ -25,7 +27,7 @@ The brackets you see in sports. We wanted to encourage engagement through 'gamif
 ##APIs Used
 
 * YouTube Search API
-* YouTube Data API
+* Embed.ly API
 * Ziggeo API
 * Firebase API
 
