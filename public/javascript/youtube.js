@@ -1,6 +1,11 @@
 $(document).ready(function() {
-  $('.youtube').on("click", function() {
-    //replace modal contents to Youtube modal
-      // $('.modal-body').replaceWith(
-        // youtube modal code from Gabe
+  $('.add-youtube').on("click", function() {
+    $('.modal-body .begin').addClass('hidden');
+    $('.search-youtube').removeClass('hidden');
   });
+
+  $('form.search-youtube').submit(function(e) {
+  	e.preventDefault();
+    search_youtube();
+  });
+});

@@ -1,23 +1,20 @@
     // Comment
     function search_videos() {
-      search_youtube();
+      search_youtube(); 
       // search_vimeo();
       // search_vine();
     }
 
     // Comment
-    function append_video(video){
-      var add_button  = "<button onclick='add_video(\'youtube\',\'" + video.id + "\',\'" + video.thumbnail + "\')'>Select This Video</button>";
+    function append_video(video) {
+      var add_button  = "<button onclick=\"addVideo(\'youtube\',\'" 
+        + video.id + "\',\'" + video.thumbnail 
+        + "\')\">Select This Video</button>";
       var embed_video = video.url;
-      $('#videos-result').append( "<div class='youtube_item'>" + add_button + embed_video + "</div>");
+      $('#videos-result').append( "<div class='youtube_item'>" 
+        + add_button + embed_video + "</div>");
     }
-
-    // Comment
-    function add_video( service, id, thumbnail ) {
-      // call firebase
-      // close modal
-      // call_method to refresh
-    }
+    // addVideo battle page
 
     /****************************************
 
@@ -31,7 +28,7 @@
       var request = gapi.client.youtube.search.list({
                  q:  q,
               part: 'snippet',
-        maxResults: 15
+        maxResults: 5
       });
 
       request.execute(function(response) {
