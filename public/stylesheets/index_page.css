@@ -2,6 +2,16 @@ body, h1{
   font-family: 'Oswald', sans-serif;;
 }
 
+.logo {
+  width: 350px;
+  padding: 120px 0 0 0;
+  height: 0;
+  background: url("/public/imgs/newlogo.png") no-repeat center;
+  overflow: hidden;
+  margin:auto;
+  vertical-align:middle;
+}
+
 .navbar-brand>img {
   display: block;
   width: 10%;
